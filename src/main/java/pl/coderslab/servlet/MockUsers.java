@@ -1,42 +1,27 @@
 package pl.coderslab.servlet;
 
 import pl.coderslab.service.UserService;
+import pl.coderslab.util.ResponseHelper;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-@WebServlet(name = "DeleteUser", value = "/user/delete")
-public class DeleteUser extends HttpServlet {
+@WebServlet(name = "MockUsers", value = "/user/mock")
+public class MockUsers extends HttpServlet {
 
     private final UserService service = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String msg ="";
-        String msg_type ="";
-        String id = request.getParameter("id");
-        if(id == null || id.isBlank()){
-            msg_type ="error_msg";
-            msg = URLEncoder.encode("Parametr id jest pusty", StandardCharsets.UTF_8);
-        }else {
-            try {
-                Integer _id = Integer.parseInt(id);
-                if (service.remove(_id)) {
-                    msg_type ="success_msg";
-                    msg = URLEncoder.encode("Usunięto użytkownika poprawnie", StandardCharsets.UTF_8);
-                } else {
-                    msg_type ="error_msg";
-                    msg = URLEncoder.encode("Nie znaleziono użytkownika w bazie", StandardCharsets.UTF_8);
-                }
-            }catch(NumberFormatException e){
-                msg_type ="error_msg";
-                msg = URLEncoder.encode("Parametr id musi być liczbą", StandardCharsets.UTF_8);
-            }
-        }
-        response.sendRedirect(request.getHeader("referer")+"?"+msg_type+"="+msg);
-    }
+
+        service.mockDb();
+
+        String msg = URLEncoder.encode("Baza została przygotowana", StandardCharsets.UTF_8);
+        ResponseHelper.sendRedirect(request,response,"success_msg",msg);}
 }

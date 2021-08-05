@@ -34,15 +34,15 @@
                                     <td>${user.email}</td>
                                     <td>
                                         <div class="row m-2">
-                                            <a href='<c:url value="/user/show?id=${user.id}"/>' class="d-none d-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-user fa-sm text-white-50"></i> Pokaż</a>
+                                            <a href='<c:url value="/user/show?id=${user.id}"/>' class="d-none d-inline-block btn btn-sm btn-info btn-block shadow-sm"><i class="fas fa-user fa-sm text-white-50"></i> Pokaż</a>
                                         </div>
                                         <div class="row m-2">
-                                            <a href='<c:url value="/user/edit?id=${user.id}"/>' class="d-none d-inline-block btn btn-sm btn-secondary shadow-sm"><i class="fas fa-user-check fa-sm text-white-50"></i> Edytuj</a>
+                                            <a href='<c:url value="/user/edit?id=${user.id}"/>' class="d-none d-inline-block btn btn-block btn-sm btn-secondary shadow-sm"><i class="fas fa-user-check fa-sm text-white-50"></i> Edytuj</a>
                                         </div>
                                         <div class="row m-2">
-                                            <form method="post" action="<c:url value="/user/delete"/>">
+                                            <form class="col m-0 p-0" method="post" action="<c:url value="/user/delete"/>">
                                                 <input type="hidden" name="id" value="${user.id}">
-                                                <button class="d-none d-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> Usuń</button>
+                                                <button class="d-none d-inline-block btn btn-sm btn-block btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> Usuń</button>
                                             </form>
                                         </div>
                                     </td>

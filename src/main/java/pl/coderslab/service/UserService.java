@@ -5,7 +5,6 @@ import pl.coderslab.dao.UserDao;
 import pl.coderslab.exception.ServiceException;
 import pl.coderslab.model.User;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
